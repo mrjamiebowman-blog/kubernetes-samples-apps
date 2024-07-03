@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MrJB.Kubernetes.Customers.Consumer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

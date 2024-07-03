@@ -1,0 +1,6 @@
+@MrJB.Kubernetes.CustomerApi_HostAddress = http://localhost:5139
+
+GET {{MrJB.Kubernetes.CustomerApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

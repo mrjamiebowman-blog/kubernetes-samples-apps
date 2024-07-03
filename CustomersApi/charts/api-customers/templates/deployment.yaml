@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "api-customers.fullname" . }}
+  labels:
+    {{- include "api-customers.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "api-customers.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        # rollme
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "api-customers.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "api-customers.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          # startupProbe:
+          #       httpGet:
+          #         path: /hc/startup
+          #         port: http
+          #       failureThreshold: {{ .Values.healthchecks.startupProbe.failureThreshold }}
+          #       periodSeconds: {{ .Values.healthchecks.startupProbe.periodSeconds }}              
+          # livenessProbe:
+          #   {{- toYaml .Values.livenessProbe | nindent 12 }}
+          # readinessProbe:
+          #   {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+           - name: "OPENAPI_DOCUMENTATION"
+             valueFrom: 
+                secretKeyRef:
+                   key: swaggerDocumentation
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_TENANT_ID"
+             valueFrom:
+                secretKeyRef:
+                   key: tenantId
+                   name: {{ .Release.Name }}-secrets               
+           - name: "AAD_CLIENT_ID"
+             valueFrom:
+                secretKeyRef:
+                   key: aadClientId
+                   name: {{ .Release.Name }}-secrets
+           - name: "AAD_CLIENT_SECRET"
+             valueFrom:
+                secretKeyRef:
+                   key: aadClientSecret
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_APPCONFIG_CONNECTION_STRING"
+             valueFrom:
+                secretKeyRef:
+                   key: azAppConfigConnStr
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_APPCONFIG_LABEL_FILTER"
+             valueFrom:
+                secretKeyRef:
+                   key: azAppConfigLabelFilter
+                   name: {{ .Release.Name }}-secrets          
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

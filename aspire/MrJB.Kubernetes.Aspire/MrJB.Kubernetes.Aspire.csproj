@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>f42381cc-87a7-4d1f-8b88-2eaf9b056d78</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomersApi\MrJB.Kubernetes.Customers.Api.csproj" />
+    <ProjectReference Include="..\..\CustomersConsumer\MrJB.Kubernetes.Customers.Consumer.csproj" />
+    <ProjectReference Include="..\..\IdentityServer\MrJB.Kubernetes.IdentityServer.csproj" />
+    <ProjectReference Include="..\..\OrdersApi\MrJB.Kubernetes.Orders.Api.csproj" />
+  </ItemGroup>
+
+</Project>

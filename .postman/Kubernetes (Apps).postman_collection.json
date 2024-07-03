@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "54746a15-52e2-4bed-95eb-511aa6bb45c9",
+		"name": "Kubernetes (Apps)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "69604"
+	},
+	"item": [
+		{
+			"name": "API: Customers",
+			"item": []
+		},
+		{
+			"name": "API: Orders",
+			"item": []
+		},
+		{
+			"name": "IdentityServer",
+			"item": [
+				{
+					"name": "API: Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api.customers",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "C86ABBFF-629B-4FBB-9E01-6EBE65E579F8",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:5001/connect/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API: Orders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "api.orders",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "C58F5C93-3B9E-4E0B-BEAE-FDBBDF5BC333",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:5001/connect/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Postman",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "postman.client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "9B7B2D08-829C-4F03-BA38-BC9A25DDEA99",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:5001/connect/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

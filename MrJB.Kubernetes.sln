@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{CA479415-2794-4D22-9F43-39D3ACC19D53}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.env = .env
+		.gitignore = .gitignore
+		azure-pipelines-nonprod.yml = azure-pipelines-nonprod.yml
+		azure-pipelines.yml = azure-pipelines.yml
+		build-docker.ps1 = build-docker.ps1
+		build.ps1 = build.ps1
+		docker-compose.yml = docker-compose.yml
+		generate-cert.ps1 = generate-cert.ps1
+		global.json = global.json
+		push.ps1 = push.ps1
+		up.ps1 = up.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B4FAAAC8-4454-4D03-B279-27ED19CEB675}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A51332C5-C058-4564-AAF3-B78FCB5318B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aspire", "aspire", "{B5C41737-0912-47D0-ABE7-21438E65A42B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.Aspire", "aspire\MrJB.Kubernetes.Aspire\MrJB.Kubernetes.Aspire.csproj", "{02DCB7D7-D0CA-4130-804F-8668AF2739CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.ServiceDefaults", "aspire\MrJB.Kubernetes.ServiceDefaults\MrJB.Kubernetes.ServiceDefaults.csproj", "{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.Customers.Api", "CustomersApi\MrJB.Kubernetes.Customers.Api.csproj", "{38D47920-41AE-44AA-A073-FF8B39EC05C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.Orders.Api", "OrdersApi\MrJB.Kubernetes.Orders.Api.csproj", "{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apis", "apis", "{8689B22B-2E66-46CB-8506-E3501D926FFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "consumers", "consumers", "{510CFA9E-1C4B-4509-84C7-829437879181}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identityserver", "identityserver", "{E947B18E-7603-436B-8E86-28CCA9398E8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.IdentityServer", "IdentityServer\MrJB.Kubernetes.IdentityServer.csproj", "{F9E4218B-39E0-4E0C-9709-731FFB2A32D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.Kubernetes.Customers.Consumer", "CustomersConsumer\MrJB.Kubernetes.Customers.Consumer.csproj", "{C319FB39-6480-47B3-A50B-842523E653BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02DCB7D7-D0CA-4130-804F-8668AF2739CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02DCB7D7-D0CA-4130-804F-8668AF2739CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02DCB7D7-D0CA-4130-804F-8668AF2739CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02DCB7D7-D0CA-4130-804F-8668AF2739CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D47920-41AE-44AA-A073-FF8B39EC05C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D47920-41AE-44AA-A073-FF8B39EC05C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D47920-41AE-44AA-A073-FF8B39EC05C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D47920-41AE-44AA-A073-FF8B39EC05C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E4218B-39E0-4E0C-9709-731FFB2A32D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E4218B-39E0-4E0C-9709-731FFB2A32D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E4218B-39E0-4E0C-9709-731FFB2A32D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E4218B-39E0-4E0C-9709-731FFB2A32D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C319FB39-6480-47B3-A50B-842523E653BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C319FB39-6480-47B3-A50B-842523E653BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C319FB39-6480-47B3-A50B-842523E653BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C319FB39-6480-47B3-A50B-842523E653BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02DCB7D7-D0CA-4130-804F-8668AF2739CE} = {B5C41737-0912-47D0-ABE7-21438E65A42B}
+		{EA7E0519-62BF-4E68-B3BB-EB68225A6EBF} = {B5C41737-0912-47D0-ABE7-21438E65A42B}
+		{38D47920-41AE-44AA-A073-FF8B39EC05C3} = {8689B22B-2E66-46CB-8506-E3501D926FFD}
+		{9FE87E6B-B003-45C2-A9E5-1BBDC8848D85} = {8689B22B-2E66-46CB-8506-E3501D926FFD}
+		{8689B22B-2E66-46CB-8506-E3501D926FFD} = {B4FAAAC8-4454-4D03-B279-27ED19CEB675}
+		{510CFA9E-1C4B-4509-84C7-829437879181} = {B4FAAAC8-4454-4D03-B279-27ED19CEB675}
+		{E947B18E-7603-436B-8E86-28CCA9398E8E} = {B4FAAAC8-4454-4D03-B279-27ED19CEB675}
+		{F9E4218B-39E0-4E0C-9709-731FFB2A32D3} = {E947B18E-7603-436B-8E86-28CCA9398E8E}
+		{C319FB39-6480-47B3-A50B-842523E653BC} = {510CFA9E-1C4B-4509-84C7-829437879181}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5542BA28-AC4A-47AA-BEDE-CF9203A2B108}
+	EndGlobalSection
+EndGlobal
