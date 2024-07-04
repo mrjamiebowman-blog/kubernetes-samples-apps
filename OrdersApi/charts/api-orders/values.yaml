@@ -75,7 +75,7 @@ resources:
 startupProbe:
   httpGet:
     path: /up
-    port: 80
+    port: http
   failureThreshold: 30
   periodSeconds: 10
 livenessProbe:
