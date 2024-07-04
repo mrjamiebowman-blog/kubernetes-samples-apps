@@ -10,13 +10,12 @@ imagePullSecrets: []
 fullnameOverride: "api-orders"
 nameOverride: ""
 
+tenantId: ""
 aadClientId: ""
 aadClientSecret: ""
 azAppConfigConnStr: ""
 azAppConfigLabelFilter: "API-ORDERS-DEV"
-tenantId: ""
 swaggerDocumentation: false
-configProvider: "azure"
 
 serviceAccount:
   create: false 
@@ -72,14 +71,24 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+startupProbe:
+  httpGet:
+    path: /hc/startup
+    port: http
+  failureThreshold: 30
+  periodSeconds: 10
 livenessProbe:
   httpGet:
     path: /
     port: http
+  initialDelaySeconds: 0
+  periodSeconds: 10
+  failureThreshold: 3    
 readinessProbe:
   httpGet:
     path: /
     port: http
+  successThreshold: 3
 
 autoscaling:
   enabled: false

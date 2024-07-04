@@ -42,6 +42,9 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          # health checks
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}            
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -52,6 +55,7 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          # environment variables
           env:
            - name: "OPENAPI_DOCUMENTATION"
              valueFrom: 

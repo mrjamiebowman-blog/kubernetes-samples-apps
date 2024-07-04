@@ -14,6 +14,13 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+tenantId: ""
+aadClientId: ""
+aadClientSecret: ""
+azAppConfigConnStr: ""
+azAppConfigLabelFilter: "CONSUMERS-CUSTOMERS-DEV"
+swaggerDocumentation: true
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -71,14 +78,24 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+startupProbe:
+  httpGet:
+    path: /hc/startup
+    port: http
+  failureThreshold: 30
+  periodSeconds: 10
 livenessProbe:
   httpGet:
     path: /
     port: http
+  initialDelaySeconds: 0
+  periodSeconds: 10
+  failureThreshold: 3    
 readinessProbe:
   httpGet:
     path: /
     port: http
+  successThreshold: 3
 
 autoscaling:
   enabled: false
@@ -101,7 +118,5 @@ volumeMounts: []
 #   readOnly: true
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}

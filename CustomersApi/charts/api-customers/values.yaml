@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: mrjamiebowman/app-k8s-customer-api
+  repository: mrjamiebowman/app-k8s-customers-api
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"

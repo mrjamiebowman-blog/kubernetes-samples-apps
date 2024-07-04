@@ -40,6 +40,9 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          # health checks
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}            
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -50,6 +53,38 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          # environment variables
+          env:
+           - name: "OPENAPI_DOCUMENTATION"
+             valueFrom: 
+                secretKeyRef:
+                   key: swaggerDocumentation
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_TENANT_ID"
+             valueFrom:
+                secretKeyRef:
+                   key: tenantId
+                   name: {{ .Release.Name }}-secrets               
+           - name: "AAD_CLIENT_ID"
+             valueFrom:
+                secretKeyRef:
+                   key: aadClientId
+                   name: {{ .Release.Name }}-secrets
+           - name: "AAD_CLIENT_SECRET"
+             valueFrom:
+                secretKeyRef:
+                   key: aadClientSecret
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_APPCONFIG_CONNECTION_STRING"
+             valueFrom:
+                secretKeyRef:
+                   key: azAppConfigConnStr
+                   name: {{ .Release.Name }}-secrets
+           - name: "AZ_APPCONFIG_LABEL_FILTER"
+             valueFrom:
+                secretKeyRef:
+                   key: azAppConfigLabelFilter
+                   name: {{ .Release.Name }}-secrets                    
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
