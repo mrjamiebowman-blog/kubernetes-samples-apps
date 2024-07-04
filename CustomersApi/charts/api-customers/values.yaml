@@ -10,11 +10,11 @@ imagePullSecrets: []
 fullnameOverride: "api-customers"
 nameOverride: ""
 
+tenantId: ""
 aadClientId: ""
 aadClientSecret: ""
 azAppConfigConnStr: ""
 azAppConfigLabelFilter: "API-CUSTOMERS-DEV"
-tenantId: ""
 swaggerDocumentation: true
 
 serviceAccount:
@@ -78,31 +78,24 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-# healthchecks:
-#   startupProbe:
-#     failureThreshold: 30
-#     periodSeconds: 10
-#   livenessProbe:
-#     initialDelaySeconds: 0
-#     periodSeconds: 10
-#     failureThreshold: 3
-#   readinessProbe:
-#     successThreshold: 3
-
-# startupProbe:
-#   httpGet:
-#     path: /hc/startup
-#     port: http
-#   failureThreshold: {{ .Values.healthchecks.startupProbe.failureThreshold }}
-#   periodSeconds: {{ .Values.healthchecks.startupProbe.periodSeconds }}
+startupProbe:
+  httpGet:
+    path: /hc/startup
+    port: http
+  failureThreshold: 30
+  periodSeconds: 10
 livenessProbe:
   httpGet:
     path: /
     port: http
+  initialDelaySeconds: 0
+  periodSeconds: 10
+  failureThreshold: 3    
 readinessProbe:
   httpGet:
     path: /
     port: http
+  successThreshold: 3
 
 autoscaling:
   enabled: false
