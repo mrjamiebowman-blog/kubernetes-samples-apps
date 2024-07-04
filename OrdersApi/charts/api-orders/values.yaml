@@ -1,13 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: mrjamiebowman/app-k8s-orders-api
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
-imagePullSecrets:
-  - name: dockercreds-mrjb
+imagePullSecrets: []
 fullnameOverride: "api-orders"
 nameOverride: ""
 
