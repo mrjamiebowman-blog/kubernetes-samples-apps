@@ -1,10 +1,19 @@
 Clear-Host
 
-# environment variables
-$NUGET_USER = [System.Environment]::GetEnvironmentVariable('NUGET_USER','user')
-$NUGET_PAT = [System.Environment]::GetEnvironmentVariable('NUGET_PAT','user')
+# identityserver
+docker run -it --rm -p 5000:5000 `
+    mrjamiebowman/app-k8s-identityserver:latest /bin/bash
 
-# customers api
-docker run -it --rm `
-    -e NUGET_USER="$NUGET_USER" -e NUGET_PAT="$NUGET_PAT" `
-    mrjamiebowman/app-k8s-customer-api:latest /bin/bash
+# # customers api
+# docker run -it --rm -p 5010:8080 `
+#     mrjamiebowman/app-k8s-customer-api:latest /bin/bash
+
+
+# # orders api
+# docker run -it --rm -p 5010:8080 `
+#     mrjamiebowman/app-k8s-orders-api:latest /bin/bash
+
+# # customers consumer
+# docker run -it --rm -p 5010:8080 `
+#     mrjamiebowman/app-k8s-customer-consumer:latest /bin/bash
+
