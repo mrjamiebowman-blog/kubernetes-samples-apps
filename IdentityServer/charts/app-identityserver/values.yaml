@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: mrjamiebowman/app-k8s-identityserver
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
 tag: "latest"
