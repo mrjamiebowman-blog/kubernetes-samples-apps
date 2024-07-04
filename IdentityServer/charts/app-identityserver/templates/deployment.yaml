@@ -41,7 +41,7 @@ spec:
           # ports
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
           # health checks
           startupProbe:
