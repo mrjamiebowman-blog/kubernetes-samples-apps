@@ -15,7 +15,9 @@ COPY ["aspire/MrJB.Kubernetes.ServiceDefaults/MrJB.Kubernetes.ServiceDefaults.cs
 COPY ["CustomersApi/MrJB.Kubernetes.Customers.Api.csproj", "CustomersApi/"]
 
 RUN dotnet restore "./CustomersApi/MrJB.Kubernetes.Customers.Api.csproj"
+
 COPY . .
+
 RUN dotnet build "./CustomersApi/MrJB.Kubernetes.Customers.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # publish

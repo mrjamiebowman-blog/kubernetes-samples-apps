@@ -1,20 +1,23 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# base
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
 USER app
 WORKDIR /app
-
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer.csproj", "src/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer/"]
-RUN dotnet restore "./src/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer.csproj"
+
+# aspire
+COPY ["aspire/MrJB.Kubernetes.ServiceDefaults/MrJB.Kubernetes.ServiceDefaults.csproj", "aspire/MrJB.Kubernetes.ServiceDefaults/"]
+# app
+COPY ["CustomersConsumer/MrJB.Kubernetes.Customers.Consumer.csproj", "CustomersConsumer/"]
+
+RUN dotnet restore "./CustomersConsumer/MrJB.Kubernetes.Customers.Consumer.csproj"
 COPY . .
-WORKDIR "/src/src/MrJB.Kubernetes.Customers.Consumer/MrJB.Kubernetes.Customers.Consumer"
-RUN dotnet build "./MrJB.Kubernetes.Customers.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+WORKDIR "/src/CustomersConsumer"
+RUN dotnet build "./CustomersConsumer/MrJB.Kubernetes.Customers.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
