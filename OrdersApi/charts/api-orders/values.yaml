@@ -75,19 +75,19 @@ resources:
 startupProbe:
   httpGet:
     path: /up
-    port: http
+    port: 80
   failureThreshold: 30
   periodSeconds: 10
 livenessProbe:
   httpGet:
-    path: /
+    path: /up
     port: http
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
 readinessProbe:
   httpGet:
-    path: /
+    path: /up
     port: http
   successThreshold: 3
 
