@@ -62,11 +62,6 @@ spec:
                 secretKeyRef:
                    key: swaggerDocumentation
                    name: {{ .Release.Name }}-secrets
-           - name: "CONFIG_PROVIDER"
-             valueFrom: 
-                secretKeyRef:
-                   key: configProvider
-                   name: {{ .Release.Name }}-secrets
            - name: "AZ_TENANT_ID"
              valueFrom:
                 secretKeyRef:
