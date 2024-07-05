@@ -74,21 +74,30 @@ resources:
 
 startupProbe:
   httpGet:
-    path: /hc/startup
+    path: /up
     port: http
+    httpHeaders:
+    - name: Probe
+      value: Startup
   failureThreshold: 30
   periodSeconds: 10
 livenessProbe:
   httpGet:
-    path: /
+    path: /up
     port: http
-  initialDelaySeconds: 0
+    httpHeaders:
+    - name: Probe
+      value: Liveness
+  initialDelaySeconds: 30
   periodSeconds: 10
-  failureThreshold: 3    
+  failureThreshold: 3
 readinessProbe:
   httpGet:
-    path: /
+    path: /up
     port: http
+    httpHeaders:
+    - name: Probe
+      value: Readiness
   successThreshold: 3
 
 autoscaling:
