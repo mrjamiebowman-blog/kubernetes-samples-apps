@@ -80,7 +80,7 @@ resources:
 
 startupProbe:
   httpGet:
-    path: /.well-known/openid-configuration
+    path: 
     port: http
     httpHeaders:
     - name: Probe
@@ -89,7 +89,7 @@ startupProbe:
   periodSeconds: 10
 livenessProbe:
   httpGet:
-    path: /.well-known/openid-configuration
+    path: /up
     port: http
     httpHeaders:
     - name: Probe
@@ -99,7 +99,7 @@ livenessProbe:
   failureThreshold: 3
 readinessProbe:
   httpGet:
-    path: /.well-known/openid-configuration
+    path: /up
     port: http
     httpHeaders:
     - name: Probe
