@@ -80,7 +80,7 @@ resources:
 
 startupProbe:
   httpGet:
-    path: 
+    path: /up
     port: http
     httpHeaders:
     - name: Probe
